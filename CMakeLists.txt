@@ -13,12 +13,43 @@ set(REQUIRED_LIBS_QUALIFIED Qt6::Core Qt6::Gui Qt6::Widgets ssh)
 
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 
-add_executable(bird_ui main.cpp)
-target_link_libraries(bird_ui
-        Qt::Core
-        Qt::Gui
-        Qt::Widgets
 find_package(libssh CONFIG REQUIRED)
+
+set(UIS src/ui/bgpPeerUI.ui)
+
+qt6_wrap_ui(UI_HEADERS ${UIS})
+
+add_executable(bird_ui main.cpp
+        ${UI_HEADERS}
+
+        src/window/MainWindow.cpp
+        src/window/MainWindow.h
+        src/service/BirdConfigService.cpp
+        src/service/BirdConfigService.h
+        src/Object/BirdConfigObject.cpp
+        src/Object/BirdConfigObject.h
+        src/Object/PeerObject.cpp
+        src/Object/PeerObject.h
+        src/Object/AbstractBirdObject.h
+        src/window/RouteWindow.cpp
+        src/window/RouteWindow.h
+        src/models/RouteTableModel.cpp
+        src/models/RouteTableModel.h
+        src/models/InterfaceTableModel.cpp
+        src/models/InterfaceTableModel.h
+        src/window/BgpPeersWindow.cpp
+        src/window/BgpPeersWindow.h
+        src/window/BgpPeerWindow.cpp
+        src/window/BgpPeerWindow.h
+        src/window/InterfacesWindow.cpp
+        src/window/InterfacesWindow.h
+        src/service/CommandService.cpp
+        src/service/CommandService.h
+        src/service/SshService.cpp
+        src/service/SshService.h
+        src/models/Interface.h
+        src/thread/LoadInterfacesThread.cpp
+        src/thread/LoadInterfacesThread.h
 )
 
 target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
