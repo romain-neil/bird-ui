@@ -18,6 +18,7 @@ target_link_libraries(bird_ui
         Qt::Core
         Qt::Gui
         Qt::Widgets
+find_package(libssh CONFIG REQUIRED)
 )
 
 target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
