@@ -20,6 +20,7 @@ target_link_libraries(bird_ui
         Qt::Widgets
 )
 
+target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
 
 if (WIN32)
     set(DEBUG_SUFFIX)
